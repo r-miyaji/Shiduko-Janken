@@ -1,0 +1,61 @@
+#!/bin/sh
+
+#静山自己紹介・じゃんけん説明
+echo "私は静山志津子、82歳。あなたに勝てたら天国のあの人も喜んでくれるかしら…"
+echo "（じゃんけんゲームです。グーorチョキorパーを入力して下さい。）"
+echo -n "あなたの手 : "
+while [ $com_hand_dec=$input ]
+do
+
+read input
+com_hand=$(($RANDOM % 3))
+echo $com_hand
+if [ $com_hand=0 ]; then
+   com_hand_dec="グー"
+elif [ $com_hand=1 ]; then
+   com_hand_dec="チョキ"
+elif [ $com_hand=2 ]; then
+   com_hand_dec="パー"
+else
+   echo "ちょっと調子が悪いみたい…じゃんけんはまた今度。"
+   break
+fi
+
+echo "静山さんの手 : " $com_hand_dec
+
+if [ $com_hand_dec=$input ]; then
+  echo "あいこ…あの人と勝負する時、いつもあいこが続いてたわ…"
+  echo -n "あなたの手 : "
+fi
+done
+
+if [ $com_hand_dec="グー" ]; then
+ if [ $input="パー" ]; then
+  echo "おめでとう。あなたの勝ちよ…"
+  break
+ else
+  echo "私の勝ち…あの人も私の勝利を喜んでくれているはずだわ…"
+  break
+ fi
+fi
+
+
+if [ $com_hand_dec="チョキ" ]; then
+ if [ $input="グー" ]; then
+  echo "おめでとう。あなたの勝ちよ…"
+  break
+ else
+  echo "私の勝ち…あの人も私の勝利を喜んでくれているはずだわ…"
+  break
+ fi
+fi
+
+if [ $com_hand_dec="パー" ]; then
+ if [ $input="チョキ" ]; then
+  echo "おめでとう。あなたの勝ちよ…"
+  break
+ else
+  echo "私の勝ち…あの人も私の勝利を喜んでくれているはずだわ…"
+  break
+ fi
+fi
